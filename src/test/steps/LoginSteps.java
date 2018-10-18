@@ -1,11 +1,27 @@
 package steps;
 
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
 import cucumber.api.PendingException;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class LoginSteps {
+	
+	WebDriver driver;
+	
+	@Before()
+	public void setup() {
+		System.setProperty("webdriver.gecko.driver", "C:\\Users\\pmurp\\eclipse-workspace\\Cucumber_Framework\\src\\test\\resources\\geckodriver.exe");
+		this.driver = new FirefoxDriver();
+		this.driver.manage().window().maximize();
+		this.driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+	}
 
 	@Given("^user navigates to stackoverflow website(\\d+)$")
 	public void user_navigates_to_stackoverflow_website(int arg1) throws Throwable {
