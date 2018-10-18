@@ -1,6 +1,7 @@
 Feature: Log into account
 	Existing user should be able to log into account using correct credentials
 	
+	
 Scenario: Log into account with correct credentials2
 Given user navigates to stackoverflow website2
 And user clicks on the login button2
