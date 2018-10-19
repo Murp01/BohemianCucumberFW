@@ -2,6 +2,7 @@ package steps;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -25,27 +26,28 @@ public class LoginSteps {
 
 	@Given("^user navigates to stackoverflow website(\\d+)$")
 	public void user_navigates_to_stackoverflow_website(int arg1) throws Throwable {
-		System.out.println("user_navigates_to_stackoverflow_website");
+		driver.get("https://stackoverflow.com/");
 	}
 
 	@Given("^user clicks on the login button(\\d+)$")
 	public void user_clicks_on_the_login_button(int arg1) throws Throwable {
-		System.out.println("user_clicks_on_the_login_button");
+		driver.findElement(By.xpath("//a[contains(text(), 'Log In')]")).click();
 	}
 
 	@Given("^user enters a valid username(\\d+)$")
 	public void user_enters_a_valid_username(int arg1) throws Throwable {
-		System.out.println("user_enters_a_valid_username");
+		Thread.sleep(3000);
+		driver.findElement(By.xpath(".//*[@id='email']")).sendKeys("FakeEmailAddress@fake.com");
 	}
 
 	@Given("^user enters a valid password(\\d+)$")
 	public void user_enters_a_valid_password(int arg1) throws Throwable {
-		System.out.println("user_enters_a_valid_password");
+		driver.findElement(By.xpath(".//*[@id='password']")).sendKeys("FakePassword");
 	}
 
 	@When("^the user clicks on the login button on the homepage(\\d+)$")
 	public void the_user_clicks_on_the_login_button_on_the_homepage(int arg1) throws Throwable {
-		System.out.println("the_user_clicks_on_the_login_button_on_the_homepage");
+		driver.findElement(By.xpath(".//*[@id='submit-button']")).click();
 	}
 
 	@Then("^user should be taken to the successful login page(\\d+)$")
