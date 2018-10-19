@@ -2,8 +2,10 @@ package steps;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import cucumber.api.PendingException;
@@ -52,7 +54,9 @@ public class LoginSteps {
 
 	@Then("^user should be taken to the successful login page(\\d+)$")
 	public void user_should_be_taken_to_the_successful_login_page(int arg1) throws Throwable {
-		System.out.println("user_should_be_taken_to_the_successful_login_page");
+		Thread.sleep(3000);
+		WebElement wrongPassMessage = driver.findElement(By.xpath("//div[contains(text(), 'The email or password is incorrect.')]"));
+		Assert.assertEquals(true, wrongPassMessage.isDisplayed());
 	}
 
 	@Given("^user navigates to stackoverflow website$")
